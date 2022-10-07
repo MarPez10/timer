@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0 100px;
+  // width: 100%;
+  background-image: url("for.png");
+  background-size: 48px 96px;;
+  font-family: 'Montserrat';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  //font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: 'Montserrat';
+}
+.app{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'), local('Montserrat'),
+  url('../public/Montserrat-VariableFont_wght.ttf') format('ttf');
+  font-weight: bold;
+  font-style: normal;
+}

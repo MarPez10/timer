@@ -1,0 +1,26 @@
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  margin-bottom: 40px;
+}
+.title {
+  color: transparent;
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 48px;
+  -webkit-text-stroke: .5px rgb(255, 255, 255);
+  line-height: 53px;
+  //display: flex;
+  //flex-direction: column;
+  //margin: 100px 0 30px 0;
+  padding: 0;
+  white-space: pre-line;
+  display: inline-block;
+}
+.point{
+  font-family: Calibri;
+  -webkit-text-stroke: 1px #FF1822;
+  font-size: 65px;
+}
