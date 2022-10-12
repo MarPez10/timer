@@ -1,0 +1,20 @@
+.entranceButton {
+    width: 176.62px;
+    height: 43px;
+    color: white;
+    border: solid 1px;
+    border-color: #FF1822;
+    font-family: sans-serif, 'Montserrat';
+    //border-right: 1px transparent;
+    cursor: pointer;
+    background: transparent;
+}
+.entranceButton:hover{
+    // color: red;
+    transition-duration: 0.5s;
+    border-color: white;
+}
+button {
+    margin: 0 10px;
+    position: relative;
+}

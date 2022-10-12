@@ -1,0 +1,11 @@
+.registrationButton{
+    border-color: transparent;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    font-family: sans-serif, 'Montserrat';
+}
+.registrationButton:hover{
+    color: red;
+    transition-duration: 0.5s;
+}
