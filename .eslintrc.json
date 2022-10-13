@@ -1,0 +1,34 @@
+{
+    "extends": [
+        "react-app",
+        "react-app/jest"
+    ],
+    "rules": {
+        "import/prefer-default-export": "off",
+        "no-trailing-spaces": "warn",
+        "implicit-arrow-linebreak": "warn",
+        "curly": "off",
+        "nonblock-statement-body-position": "off",
+        "react/no-array-index-key": "warn",
+        "react/jsx-props-no-spreading": "warn",
+        "max-len": [
+            "error",
+            {
+            "code": 120,
+            "tabWidth": 2,
+            "comments": 120
+            }
+        ],
+        "no-console": [
+            "warn",
+            {
+            "allow": ["error", "warn"]
+        }
+        ],
+        "react/prop-types": 0,
+        "react/function-component-definition": 0,
+        "react/require-default-props": "off",
+        "semi": [2, "never"],
+        "indent": ["error", 2]
+    }
+}

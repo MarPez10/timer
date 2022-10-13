@@ -1,0 +1,19 @@
+.loginForm{
+    background: #0B0C0C;
+    width: 727px;
+    height: 678px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.forgotPassword{
+    color: #A1A1A1;
+    margin-top: 25px;
+    cursor: pointer;
+    text-decoration: none;
+}

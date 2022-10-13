@@ -1,0 +1,16 @@
+.entranceButton {
+    width: 176.62px;
+    height: 43px;
+    color: white;
+    border: 1px solid #FF1822;
+    cursor: pointer;
+    background: transparent;
+}
+.entranceButton:hover{
+    transition-duration: 0.5s;
+    border-color: white;
+}
+button {
+    margin: 0 10px;
+    position: relative;
+}

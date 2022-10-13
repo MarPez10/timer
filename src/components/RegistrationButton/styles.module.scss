@@ -1,0 +1,10 @@
+.registrationButton{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: white;
+}
+.registrationButton:hover{
+    color: red;
+    transition-duration: 0.5s;
+}
