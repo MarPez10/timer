@@ -1,9 +1,8 @@
 .registrationButton{
-    border-color: transparent;
-    color: white;
+    border: none;
     background: transparent;
     cursor: pointer;
-    font-family: sans-serif, 'Montserrat';
+    color: white;
 }
 .registrationButton:hover{
     color: red;

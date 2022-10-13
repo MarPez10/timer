@@ -41,31 +41,3 @@ export const Input = ({name, placeholder, type}) => {
     </div>
   )
 }
-
-
-// function TypePassword() {
-//   const [passInputChange, setPassInputChange] = useState('')
-//   const [passInputClasses, setPassInputClasses] = useState('pass-input-passive')
-//   const [toggleIcon, setToggleIcon] = useState('.passOpen')
-//   const [toggleIconClasses, setToggleIconClasses] = useState('toggle-icon-passive')
-//   const [ripple, setRipple] = useState('')
-//   const [type, setType] = useState('password')
-//
-//   return (
-//     <div className="TypePassword">
-//       <div className='input-container'>
-//         <div className='input-group'>
-//
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-
-// export const Input = (props) => {
-//   // console.log(props.test)
-//   return (
-//     <input className={styles.input} name={props.name} placeholder={props.placeholder} type={props.type}/>
-//   )
-// }

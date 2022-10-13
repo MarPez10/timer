@@ -11,8 +11,6 @@ export function RegistrationForm() {
   const {formState} = useForm({
     mode: "onBlur",
   })
-  // const onSubmit:SubmitHandler<Login> = ( data ) => {
-  // }
   function onSubmit(data) {
   }
 

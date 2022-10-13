@@ -1,30 +1,23 @@
 import {useForm} from 'react-hook-form'
 import styles from './styles.module.scss'
-import {isEmail} from 'validator/lib/isEmail'
 import {Input} from "../Input"
 import {Button} from "../Button"
 import {Checkbox} from "../Checkbox"
 import {Title} from "../Title"
 
-// import {Login} from "../../app.interface"
-
 export function LoginForm() {
-  const { register, formState} = useForm({
+  const {formState} = useForm({
     mode: "onBlur",
   })
-  // const onSubmit:SubmitHandler<Login> = ( data ) => {
-  // }
   function onSubmit(data) {
   }
 
   return (
     <div className={styles.loginForm}>
       <Title
-        title1="ВХОД"
-        title5="В ОТМЕЧАЛОЧКУ"
-        point="."
+        title={"ВХОД\nВ ОТМЕЧАЛОЧКУ"}
+        ending="."
       />
-      {/*{"ВХОД\nВ ОТМЕЧАЛОЧКУ"}*/}
       <form onSubmit={onSubmit}>
         <Input
           name="email"
@@ -45,7 +38,7 @@ export function LoginForm() {
           disabled={formState.isSubmitting}
           text="ЗАЛОГИНИТЬСЯ"
         />
-        <span className={styles.forgotPassword}>Забыли пароль?</span>
+        <a href='/' className={styles.forgotPassword}>Забыли пароль?</a>
       </form>
     </div>)
 }

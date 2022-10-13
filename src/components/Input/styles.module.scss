@@ -1,36 +1,27 @@
-.wrappe{
+.wrapper{
   position: relative;
-  height: 100%;
 }
 .input{
   position: relative;
   width: 460px;
   height: 53px;
   font-size: 16px;
-  margin: 0;
-  padding: 0;
   border: none;
   background: #1A1A1A;
   color: #A1A1A1;
-  //line-height: 21.16px;
   padding-left: 20px;
-  margin-bottom: 16px;
-  font-family: sans-serif, 'Montserrat';
-
+  margin: 8px 0 8px 0;
 }
 .eyeBlock{
-
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background-color: #1A1A1A;
   margin: 0;
   padding: 0;
   border: 0;
-}
-svg{
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  transform: translate(00%, -75%);
-  right: 10px;
-  top: 0;
-  align-self: center;
 }

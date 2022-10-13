@@ -1,17 +1,12 @@
 body {
   margin: 0;
+  color: white !important;
   padding: 0 100px;
-  // width: 100%;
   background-image: url("for.png");
   background-size: 48px 96px;;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  //font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-  font-family: 'Montserrat';
 }
 .app{
   display: flex;

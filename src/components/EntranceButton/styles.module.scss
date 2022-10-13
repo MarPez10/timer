@@ -2,15 +2,11 @@
     width: 176.62px;
     height: 43px;
     color: white;
-    border: solid 1px;
-    border-color: #FF1822;
-    font-family: sans-serif, 'Montserrat';
-    //border-right: 1px transparent;
+    border: 1px solid #FF1822;
     cursor: pointer;
     background: transparent;
 }
 .entranceButton:hover{
-    // color: red;
     transition-duration: 0.5s;
     border-color: white;
 }
