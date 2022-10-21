@@ -1,8 +1,10 @@
 .registrationButton{
     border: none;
+    text-decoration: none;
     background: transparent;
     cursor: pointer;
     color: white;
+    padding: 10px;
 }
 .registrationButton:hover{
     color: red;

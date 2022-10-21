@@ -1,4 +1,4 @@
-.loginForm{
+.registrationForm{
     background: #0B0C0C;
     width: 727px;
     height: 678px;
@@ -9,10 +9,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        > button{
+            margin-top: 20px;
+        }
     }
-}
-.forgotPassword{
-    color: #A1A1A1;
-    margin-top: 25px;
-    cursor: pointer;
+
 }

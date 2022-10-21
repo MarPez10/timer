@@ -4,12 +4,13 @@ import {Input} from "../Input"
 import {Button} from "../Button"
 import {Checkbox} from "../Checkbox"
 import {Title} from "../Title"
+import {Link} from "react-router-dom"
 
 export function LoginForm() {
   const {formState} = useForm({
     mode: "onBlur",
   })
-  function onSubmit(data) {
+  function onSubmit(enter) {
   }
 
   return (
@@ -38,7 +39,7 @@ export function LoginForm() {
           disabled={formState.isSubmitting}
           text="ЗАЛОГИНИТЬСЯ"
         />
-        <a href='/' className={styles.forgotPassword}>Забыли пароль?</a>
+        <Link to='/auth/forgotpassword' className={styles.forgotPassword}>Забыли пароль?</Link>
       </form>
     </div>)
 }
