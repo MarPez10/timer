@@ -2,7 +2,7 @@ import styles from './styles.module.scss'
 import {EntranceButton} from '../EntranceButton'
 import {RegistrationButton} from '../RegistrationButton'
 
-export var Header = () => {
+export const Header = () => {
   return (
     <div className={styles.header}>
       <a href="/">MarPez</a>

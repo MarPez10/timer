@@ -1,7 +1,11 @@
 import styles from './styles.module.scss'
+import { Link } from 'react-router-dom'
 
-export const EntranceButton = ({ enter}) => {
+export const EntranceButton = () => {
+
   return (
-    <button onClick={enter} className={styles.entranceButton}>ВХОД</button>
+    <>
+      <Link to="/auth/login" className={styles.entranceButton}>ВХОД</Link>
+    </>
   )
 }

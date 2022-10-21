@@ -1,8 +1,12 @@
 import styles from './styles.module.scss'
+import { Link } from 'react-router-dom'
 
-export const RegistrationButton = ({enter}) => {
+export const RegistrationButton = () => {
+
   return (
-    <button onClick={enter} className={styles.registrationButton}>РЕГИСТРАЦИЯ</button>
+    <>
+      <Link to="/auth/registration" className={styles.registrationButton}>РЕГИСТРАЦИЯ</Link>
+    </>
   )
 }
 
