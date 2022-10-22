@@ -1,17 +1,19 @@
-import {useState} from 'react'
+import React, { useState } from 'react'
 import styles from './styles.module.scss'
 
-export const Input = ({name, placeholder, type}) => {
+export const Input = ({ name, placeholder, type, register }) => {
   const [isTypeText, setIsTypeText] = useState(false)
   const toggleType = () => setIsTypeText(prev => !prev)
 
   return (
     <div className={styles.wrapper}>
-      <input className={styles.input} name={name} placeholder={placeholder} type={isTypeText ? "text" : type}/>
-      {name === "password" ? (
-        <button onClick={toggleType} className={styles.eyeBlock} type={"button"}>
-          {isTypeText ?
-            <svg className={styles.passOpen} width="24" height="24" viewBox="0 0 24 24" fill="white"
+      <input className={styles.input} name={name} {...register(name)} placeholder={placeholder}
+        type={isTypeText ? 'text' : type}/>
+      {name === 'password' || name === 'confirmPassword'
+        ? (
+        <button onClick={toggleType} className={styles.eyeBlock} type={'button'}>
+          {isTypeText
+            ? <svg className={styles.passOpen} width="24" height="24" viewBox="0 0 24 24" fill="white"
               xmlns="http://www.w3.org/2000/svg"> <path d="M12 9C11.206 9.00524 10.4459
           9.32299 9.88447 9.88447C9.32299 10.4459 9.00524 11.206 9 12C9 13.642
           10.358 15 12 15C13.641 15 15 13.642 15 12C15 10.359 13.641 9 12 9Z" fill="#A1A1A1"/>
@@ -23,8 +25,7 @@ export const Input = ({name, placeholder, type}) => {
           6.6518 7 11.9998 7C17.3508 7 19.4238
           10.846 19.9258 12C19.4218 13.158 17.3478 17 11.9998 17Z" fill="#A1A1A1"/>
             </svg>
-            :
-            <svg className={styles.passClose} width="24" height="24" viewBox="0 0 24 24" fill="white"
+            : <svg className={styles.passClose} width="24" height="24" viewBox="0 0 24 24" fill="white"
               xmlns="http://www.w3.org/2000/svg"><path d="M12.0002 19C12.9462 19 13.8102 18.897
           14.5982 18.719L12.8412 16.962C12.5682 16.983 12.2912 17
           12.0002 17C6.64922 17 4.57622 13.154 4.07422 12C4.45117 11.1588 4.96027 10.3833 5.58222 9.703L4.18422
@@ -37,7 +38,8 @@ export const Input = ({name, placeholder, type}) => {
           19.9262 12C19.6242 12.692 18.7602 14.342 16.9722 15.558Z" fill="#A1A1A1"/>
             </svg>}
         </button>
-      ): null}
+          )
+        : null}
     </div>
   )
 }

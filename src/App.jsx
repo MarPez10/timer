@@ -1,8 +1,8 @@
-import {Header} from './components/Header'
-import {Auth} from './page/Auth'
+import React from 'react'
+import { Header } from './components/Header'
+import { Auth } from './page/Auth'
 
-export function App() {
-
+export function App () {
   return (
     <div className='app'>
       <Header />
@@ -10,4 +10,3 @@ export function App() {
     </div>
   )
 }
-
