@@ -1,7 +1,7 @@
+import React from 'react'
 import styles from './styles.module.scss'
 
-export const Checkbox = ({type, text}) => {
-
+export const Checkbox = ({ type, text }) => {
   return (
     <div className={styles.wrapper}>
       <label className={styles.label}>

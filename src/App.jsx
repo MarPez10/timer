@@ -1,13 +1,15 @@
-import {Header} from './components/Header'
-import {Auth} from './page/Auth'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { Auth } from './page/Auth'
+import { Home } from './page/Home'
 
-export function App() {
-
+export function App () {
   return (
     <div className='app'>
-      <Header />
-      <Auth />
+      <Routes>
+        <Route path="/auth/*" element={<Auth />} />
+        <Route path="/home/*" element={<Home />} />
+      </Routes>
     </div>
   )
 }
-
