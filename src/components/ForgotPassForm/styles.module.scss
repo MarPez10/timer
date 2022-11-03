@@ -1,4 +1,5 @@
 .ForgotPassForm{
+    margin: 0 auto;
     background: #0B0C0C;
     width: 727px;
     height: 678px;
@@ -13,14 +14,14 @@
         flex-direction: column;
         align-items: center;
         > button{
-            margin-top: 32px;
+            margin: 32px 0;
         }
     }
 
 }
 .goBack{
     color: #A1A1A1;
-    margin-top: 80px;
+    margin-top: 60px;
     cursor: pointer;
     text-decoration: none;
     margin-right: auto;

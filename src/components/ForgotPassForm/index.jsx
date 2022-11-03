@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import { useForm } from 'react-hook-form'
 import styles from './styles.module.scss'
 import { Input } from '../Input'
@@ -8,6 +8,10 @@ import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+// import { doc, getDoc } from 'firebase/firestore'
+// import { db } from '../../firebase/firebaseConfig'
+import { sendPasswordResetEmail } from 'firebase/auth'
+import { auth } from '../../firebase/firebaseConfig'
 
 export function ForgotPassForm () {
   const RecoveryFormSchema = yup.object().shape({
@@ -15,13 +19,18 @@ export function ForgotPassForm () {
       .email('Введите верный email')
       .required('Обязательно')
   })
-  const { register, handleSubmit, getValues, formState: { errors, isValid } } = useForm({
-    mode: 'onBlur',
+  const { register, handleSubmit, /* getValues, */ formState: { errors, isValid } } = useForm({
+    mode: 'onChange',
     resolver: yupResolver(RecoveryFormSchema)
   })
-
-  const onSubmit = () => {
-    console.log(getValues(), errors)
+  const [error, useError] = useState('')
+  const onSubmit = async (data) => {
+    try {
+      await sendPasswordResetEmail(auth, data.email)
+      await useError(`Ссылка была отправлена на ${data.email}`)
+    } catch (e) {
+      useError('Такой email не зарегестрирован')
+    }
   }
 
   return (
@@ -40,11 +49,11 @@ export function ForgotPassForm () {
         />
         <span className={styles.error}>{errors.email?.message}</span>
         <Button
-          onClick={onSubmit}
           disabled={!isValid}
           type="submit"
           text="ОТПРАВИТЬ ССЫЛКУ НА ПОЧТУ"
         />
+        <span className={styles.error}>{error}</span>
         <Link to='/auth/login' className={styles.goBack}>Вернуться</Link>
       </form>
     </div>)

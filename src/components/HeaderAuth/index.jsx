@@ -3,7 +3,7 @@ import styles from './styles.module.scss'
 import { EntranceButton } from '../EntranceButton'
 import { RegistrationButton } from '../RegistrationButton'
 
-export const Header = () => {
+export const HeaderAuth = () => {
   return (
     <div className={styles.header}>
       <a href="/">MarPez</a>
