@@ -10,11 +10,12 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth, db } from '../../firebase/firebaseConfig'
 import { setDoc, doc } from 'firebase/firestore'
 // import { useDispatch } from 'react-redux'
-// // import { registerUser } from '../../redux/reducers/user'
+// import { registerUser } from '../../redux/reducers/user'
 // import { useNavigate } from 'react-router-dom'
 
 export function RegistrationForm () {
-  // // const dispatch = useDispatch
+  // const dispatch = useDispatch()
+
   const RegFormSchema = yup.object().shape({
     name: yup.string()
       .typeError('Должно быть строкой')
@@ -36,9 +37,14 @@ export function RegistrationForm () {
     resolver: yupResolver(RegFormSchema)
   })
   const [error, useError] = useState('')
+
   const onSubmit = async (data) => {
     try {
       await createUserWithEmailAndPassword(auth, data.email, data.password)
+        .then((userCredential) => {
+          const user = userCredential.user
+          user.displayName = data.name
+        })
       await setDoc(doc(db, 'users', data.email), {
         name: data.name,
         email: data.email,
@@ -62,29 +68,29 @@ export function RegistrationForm () {
           name="name"
           placeholder="Фамилия и имя"
           type="text"
+          errorText={errors.name?.message}
         />
-        <span className={styles.error}>{errors.name?.message}</span>
         <Input
           register={register}
           name="email"
           placeholder="Почта @clickable.agency"
           type="text"
+          errorText={errors.email?.message}
         />
-        <span className={styles.error}>{errors.email?.message}</span>
         <Input
           register={register}
           name="password"
-          placeholder="Почта"
+          placeholder="Пароль"
           type="password"
+          errorText={errors.password?.message}
         />
-        <span className={styles.error}>{errors.password?.message}</span>
         <Input
           register={register}
           name="confirmPassword"
           placeholder="Еще разок пароль"
           type="password"
+          errorText={errors.confirmPassword?.message}
         />
-        <span className={styles.error}>{errors.confirmPassword?.message}</span>
         <Button
           disabled={!isValid}
           type="submit"

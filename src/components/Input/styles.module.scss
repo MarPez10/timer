@@ -10,7 +10,7 @@
   background: #1A1A1A;
   color: #A1A1A1;
   padding-left: 20px;
-  margin: 10px 0 10px 0;
+  margin: 10px 0 6px 0;
   outline: none;
 }
 .eyeBlock{
@@ -25,4 +25,11 @@
   margin: 0;
   padding: 0;
   border: 0;
+}
+.authError{
+  position: absolute;
+  left: 0;
+  bottom: -10%;
+  font-size: 14px;
+  color: red;
 }

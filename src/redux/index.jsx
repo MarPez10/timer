@@ -4,5 +4,9 @@ import user from './reducers/user'
 export const store = configureStore({
   reducer: {
     user
-  }
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    })
 })
