@@ -1,18 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const userReducer = createSlice({
+export const userReducer = createSlice({
   name: 'user',
   initialState: {
-    user: {
-      email: ''
-    }
+    name: '',
+    email: '',
+    isAdmin: false
   },
   reducers: {
-    registerUser: (state, action) => {
-      state.user = action.payload.obj
-    }
+    addUser: (_, { payload }) => ({
+      name: payload.name,
+      email: payload.email,
+      isAdmin: payload.isAdmin
+    }),
+    logOutUser: () => ({
+      name: '',
+      email: '',
+      isAdmin: false
+    })
   }
 })
 
 export default userReducer.reducer
-export const { registerUser } = userReducer.actions
+export const { addUser, logOutUser } = userReducer.actions

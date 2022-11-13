@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 import styles from './styles.module.scss'
 
-export const Input = ({ name, placeholder, type, register }) => {
+export const Input = ({ name, placeholder, type, register, errorText }) => {
   const [isTypeText, setIsTypeText] = useState(false)
   const toggleType = () => setIsTypeText(prev => !prev)
+  const error = (<div className={styles.authError}>{errorText}</div>)
 
   return (
     <div className={styles.wrapper}>
-      <input className={styles.input} name={name} {...register(name)} placeholder={placeholder}
-        type={isTypeText ? 'text' : type}/>
+      <input className={styles.input}
+         name={name}
+         {...register(name)}
+         placeholder={placeholder}
+         type={isTypeText ? 'text' : type}/>
+      {errorText && error}
       {name === 'password' || name === 'confirmPassword'
         ? (
         <button onClick={toggleType} className={styles.eyeBlock} type={'button'}>

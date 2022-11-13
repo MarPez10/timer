@@ -19,7 +19,7 @@ export function ForgotPassForm () {
       .email('Введите верный email')
       .required('Обязательно')
   })
-  const { register, handleSubmit, /* getValues, */ formState: { errors, isValid } } = useForm({
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm({
     mode: 'onChange',
     resolver: yupResolver(RecoveryFormSchema)
   })
@@ -46,14 +46,13 @@ export function ForgotPassForm () {
           name="email"
           placeholder="Введи почту @clickable.agency"
           type="text"
+          errorText={errors.email?.message || error}
         />
-        <span className={styles.error}>{errors.email?.message}</span>
         <Button
           disabled={!isValid}
           type="submit"
           text="ОТПРАВИТЬ ССЫЛКУ НА ПОЧТУ"
         />
-        <span className={styles.error}>{error}</span>
         <Link to='/auth/login' className={styles.goBack}>Вернуться</Link>
       </form>
     </div>)
