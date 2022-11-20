@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
-// import { useForm } from 'react-hook-form'
 import styles from './styles.module.scss'
-import { Input } from '../Input'
-import { Button } from '../Button'
-import { Title } from '../Title'
+import { Input } from '../../Input'
+import { Button } from '../../Button'
 import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-// import { doc, getDoc } from 'firebase/firestore'
-// import { db } from '../../firebase/firebaseConfig'
 import { sendPasswordResetEmail } from 'firebase/auth'
-import { auth } from '../../firebase/firebaseConfig'
+import { auth } from '../../../firebase/firebaseConfig'
+import { Forms } from '../index'
 
 export function ForgotPassForm () {
   const RecoveryFormSchema = yup.object().shape({
@@ -34,13 +31,13 @@ export function ForgotPassForm () {
   }
 
   return (
-    <div className={styles.ForgotPassForm}>
-      <Title
-        title={'ЗАБЫЛ ПАРОЛЬ'}
-        ending="?"
-      />
-      <p className={styles.text}>не переживай, такое случается с лучшими из нас</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <Forms
+      title={'ЗАБЫЛ ПАРОЛЬ'}
+      ending="?"
+      paragraph="не переживай, такое случается с лучшими из нас"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      {/* <p className={styles.text}>не переживай, такое случается с лучшими из нас</p> */}
         <Input
           register={register}
           name="email"
@@ -52,8 +49,9 @@ export function ForgotPassForm () {
           disabled={!isValid}
           type="submit"
           text="ОТПРАВИТЬ ССЫЛКУ НА ПОЧТУ"
+          style="buttonForm"
         />
         <Link to='/auth/login' className={styles.goBack}>Вернуться</Link>
-      </form>
-    </div>)
+    </Forms>
+  )
 }

@@ -1,21 +1,15 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import styles from './styles.module.scss'
-import { Input } from '../Input'
-import { Button } from '../Button'
-import { Title } from '../Title'
+import { Input } from '../../Input'
+import { Button } from '../../Button'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth, db } from '../../firebase/firebaseConfig'
+import { auth, db } from '../../../firebase/firebaseConfig'
 import { setDoc, doc } from 'firebase/firestore'
-// import { useDispatch } from 'react-redux'
-// import { registerUser } from '../../redux/reducers/user'
-// import { useNavigate } from 'react-router-dom'
+import { Forms } from '../index'
 
 export function RegistrationForm () {
-  // const dispatch = useDispatch()
-
   const RegFormSchema = yup.object().shape({
     name: yup.string()
       .typeError('Должно быть строкой')
@@ -57,12 +51,12 @@ export function RegistrationForm () {
     }
   }
   return (
-    <div className={styles.registrationForm}>
-      <Title
-        title={'РЕГИСТРАЦИЯ\nВ ОТМЕЧАЛОЧКЕ'}
-        ending=" ."
-      />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <Forms
+      title={'РЕГИСТРАЦИЯ\nВ ОТМЕЧАЛОЧКЕ'}
+      ending=" ."
+      onSubmit={handleSubmit(onSubmit)}
+      error={error}
+      >
         <Input
           register={register}
           name="name"
@@ -73,7 +67,7 @@ export function RegistrationForm () {
         <Input
           register={register}
           name="email"
-          placeholder="Почта @clickable.agency"
+          placeholder="Почта"
           type="text"
           errorText={errors.email?.message}
         />
@@ -95,8 +89,8 @@ export function RegistrationForm () {
           disabled={!isValid}
           type="submit"
           text="РЕГИСТРАЦИЯ"
+          style="buttonForm"
         />
-        <span className={styles.error}>{error}</span>
-      </form>
-    </div>)
+      </Forms>
+  )
 }

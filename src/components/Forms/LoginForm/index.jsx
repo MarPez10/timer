@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import styles from './styles.module.scss'
-import { Input } from '../Input'
-import { Button } from '../Button'
-import { Checkbox } from '../Checkbox'
-import { Title } from '../Title'
+import { Input } from '../../Input'
+import { Button } from '../../Button'
+import { Checkbox } from '../../Checkbox'
 import { Link, useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth, db } from '../../firebase/firebaseConfig'
-import { addUser } from '../../redux/reducers/user'
+import { auth, db } from '../../../firebase/firebaseConfig'
+import { addUser } from '../../../redux/reducers/user'
 import { useDispatch } from 'react-redux'
 import { doc, getDoc } from 'firebase/firestore'
+import { Forms } from '../index'
 
 export function LoginForm () {
   const LoginFormSchema = yup.object().shape({
@@ -58,12 +58,12 @@ export function LoginForm () {
   }
 
   return (
-    <div className={styles.loginForm}>
-      <Title
-        title={'ВХОД\nВ ОТМЕЧАЛОЧКУ'}
-        ending="."
-      />
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <Forms
+      title={'ВХОД\nВ ОТМЕЧАЛОЧКУ'}
+      ending="."
+      onSubmit={handleSubmit(onSubmit)}
+      error={error}
+    >
         <Input
           register={register}
           name="email"
@@ -88,9 +88,9 @@ export function LoginForm () {
           disabled={!isValid}
           type="submit"
           text="ЗАЛОГИНИТЬСЯ"
+          style="buttonForm"
         />
         <Link to='/auth/reset' className={styles.forgotPassword}>Забыли пароль?</Link>
-        <span className={styles.error}>{error}</span>
-      </form>
-    </div>)
+    </Forms>
+  )
 }
