@@ -3,22 +3,23 @@ import { Auth } from './page/Auth'
 import { Home } from './page/Home'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser } from './redux/reducers/user'
+// import { Admin } from './page/Admin'
 
 export function App () {
   const dispatch = useDispatch()
-  const user = useSelector((s) => s.user)
+  // Этот useSelector здесь необходим, на кой хер ХЗ
+  useSelector((s) => s.user)
 
+  const userStorage = localStorage.getItem('user') ?? sessionStorage.getItem('user')
   useEffect(() => {
-    const userStorage = localStorage.getItem('user') ?? sessionStorage.getItem('user')
     if (userStorage) dispatch(addUser(JSON.parse(userStorage)))
   }, [])
-
   return (
     <div className='app'>
-        {user.email
-          ? <Home />
-          : <Auth />
-        }
+         {userStorage
+           ? <Home />
+           : <Auth />
+         }
     </div>
   )
 }

@@ -1,15 +1,26 @@
 import React from 'react'
 import styles from './styles.module.scss'
-import { EntranceButton } from '../EntranceButton'
-import { RegistrationButton } from '../RegistrationButton'
+import { Button } from '../../lib/Button'
+import { useNavigate } from 'react-router-dom'
 
 export const HeaderAuth = () => {
+  const navigate = useNavigate()
+  const toEntrance = () => navigate('/auth/login')
+  const toRegistration = () => navigate('/auth/registration')
   return (
     <div className={styles.header}>
       <a href="/">MarPez</a>
       <div >
-        <EntranceButton />
-        <RegistrationButton />
+          <Button
+          style="entranceButton"
+          text='ВХОД'
+          onClick={toEntrance}
+          />
+          <Button
+          style="registrationButton"
+          text='РЕГИСТРАЦИЯ'
+          onClick={toRegistration}
+          />
       </div>
     </div>
   )

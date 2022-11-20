@@ -1,0 +1,50 @@
+.authForm{
+    position: relative;
+    margin: -58px auto 0 auto;
+    background: #0B0C0C;
+    width: 727px;
+    height: 678px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(0% 0%,
+            100% 0%,
+            100% 76.3%,
+            77.9% 100%,
+            0% 100%);
+
+    &:after {
+        content: "";
+        position: absolute;
+        top: 76.3%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: red;
+        transform-origin: 0 0;
+        transform: rotate(45deg);
+    }
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.error{
+    color: #FF1822;
+    position: relative;
+}
+.homeForm{
+    width: 805px;
+    height: 615px;
+    position: relative;
+    background: #0B0C0C;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    padding-left: 56px;
+    padding-top: 48px;
+    transition: .5s;
+}
+

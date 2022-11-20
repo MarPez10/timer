@@ -11,7 +11,8 @@ export const userReducer = createSlice({
     addUser: (_, { payload }) => ({
       name: payload.name,
       email: payload.email,
-      isAdmin: payload.isAdmin
+      isAdmin: payload.isAdmin,
+      start: payload.start
     }),
     logOutUser: () => ({
       name: '',
