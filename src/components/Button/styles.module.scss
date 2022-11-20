@@ -1,12 +1,14 @@
-.button {
-  width: 480px;
-  font-weight: 600;
-  height: 74.5px;
+.button{
+  width: 290px;
+  height: 74px;
+  font-size: 13px;
   color: white;
-  background: red;
+  background-repeat: no-repeat;
   position: relative;
-  border: none;
+  background-size: cover;
   cursor: pointer;
+  &__red{
+    background-image: url("../../img/b-home-main-red.png");
     &:before{
       content: "";
       width: 80px;
@@ -16,7 +18,47 @@
       margin-left: -36px;
       left: 0;
       background-color: rgba(255, 255, 255, 1);
-      z-index: 22;
+    }
+    &:hover:before{
+      transition: 0.5s;
+      margin-left: -80px;
+    }
+  }
+  &__white{
+    background-image: url("../../img/b-header-auth-white.png");
+    height: 73px;
+    &:hover{
+      transition: 0.5s;
+      background-image: url("../../img/b-header-auth-red.png");
+    }
+  }
+  &__dark{
+    background-image: url("../../img/b-home-dark.png");
+    height: 73px;
+    &:hover{
+      transition: 0.5s;
+      background-image: url("../../img/b-header-auth-red.png");
+    }
+  }
+}
+.buttonForm {
+  width: 480px;
+  font-weight: 600;
+  height: 74.5px;
+  color: white;
+  background: red;
+  position: relative;
+  border: none;
+  margin-top: 30px;
+    &:before{
+      content: "";
+      width: 80px;
+      height: 1px;
+      position: absolute;
+      top: 50%;
+      margin-left: -36px;
+      left: 0;
+      background-color: rgba(255, 255, 255, 1);
     }
   &:after {
     content: "";
@@ -35,3 +77,34 @@
     margin-left: -80px;
   }
 }
+.entranceButton {
+  width: 178px;
+  height: 44.5px;
+  color: white;
+  font-size: 13px;
+  padding: 15px 70px;
+  margin-right: 15px;
+  text-decoration: none;
+  background-image: url("../../img/b-header-auth-red.png");
+  background-size: 179px 45px;
+  background-repeat: no-repeat;
+  &:hover{
+    transition-duration: 0.5s;
+    background-image: url("../../img/b-header-auth-white.png");
+  }
+}
+.registrationButton{
+  width: 130px;
+  height: 40px;
+  border: none;
+  text-decoration: none;
+  background: transparent;
+  color: white;
+  padding: 10px;
+  font-size: 13px;
+  &:hover{
+    color: red;
+    transition-duration: 0.5s;
+  }
+}
+

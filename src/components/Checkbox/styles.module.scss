@@ -1,6 +1,5 @@
 .wrapper{
   width: 100%;
-  margin-bottom: 30px;
   margin-top: 15px;
 }
 .label{
@@ -18,6 +17,13 @@
     height: 32px;
     position: relative;
     background: #1a1a1a;
+    &__ball{
+      border-radius: 50%;
+
+    }
+  }
+  .fake__ball:before{
+    border-radius: 50%;
   }
   .fake:before{
     content: "";
@@ -31,12 +37,18 @@
     background: #FF1822;
     opacity: 0;
     transition: .3s;
+
   }
   .checkbox:checked + .fake::before{
     opacity: 1;
   }
+  //.kub:before{
+  //  border-radius: 0;
+  //}
+
   > .text {
     color: #A1A1A1;
     padding-left: 15px;
+    font-size: 16px;
   }
 }
