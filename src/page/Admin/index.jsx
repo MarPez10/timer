@@ -1,16 +1,14 @@
 import React from 'react'
 import styles from './styles.module.scss'
 import { HeaderHome } from '../../components/HeaderHome'
-import { HomeMain } from '../../components/HomeMain'
-import { Table } from '../../components/Table'
+import { AdminMain } from '../../components/AdminMain'
 
-export const Home = () => {
+export const Admin = () => {
   return (
-    <div className={styles.home}>
+    <div className={styles.admin}>
       <HeaderHome />
       <div className={styles.mainPage}>
-        <HomeMain />
-        <Table />
+          <AdminMain />
       </div>
     </div>
   )

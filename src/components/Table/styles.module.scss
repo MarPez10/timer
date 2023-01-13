@@ -1,0 +1,96 @@
+.table {
+  margin-top: 61px;
+  width: 100%;
+}
+.tableHeader{
+  color: #A1A1A1;
+  background-color: #1A1A1A;
+}
+.tableBody{
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: #0B0C0C;
+  width: 100%;
+}
+.row,.rowResult,.rowRed,.rowRedResult,.rowGreen,.rowGreenResult{
+  display: flex;
+  color: white;
+  position: relative;
+}
+.cell{
+   &:last-child{
+    justify-self: end;
+  }
+}
+.row,.headerRow{
+  display: grid;
+  padding: 0 21px;
+  height: 53px;
+  grid-template-columns: 21% 21% 21% 21% 16%;
+  align-items: center;
+}
+.rowRed,.rowRedResult{
+  color: #FF1822;
+}
+.rowResult{
+  &:before{
+    content: 'P–P–P–PERFECT:';
+
+  }
+}
+.rowRedResult{
+  justify-self: end;
+  &:before{
+    content: 'НЕДОРАБОТКА:';
+  }
+}
+.rowGreen,.rowGreenResult{
+  color: #00CF2C;
+}
+.rowGreenResult{
+  justify-self: end;
+  &:before{
+    content: 'ПЕРЕРАБОТКА:';
+  }
+}
+.rowResult,.rowRedResult,.rowGreenResult{
+  &:before{
+    padding-right: 10px;
+  }
+}
+.obedIcon,.pauseIcon{
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 21px;
+  transform: translate(0%, -10%);
+}
+.pause,.obed{
+  font-size: 14px;
+}
+.pause{
+  position: absolute;
+  left: 137px;
+}
+[data-tooltip] {
+  position: relative; /* Относительное позиционирование */
+  white-space: nowrap;
+}
+[data-tooltip]::after {
+  content: attr(data-tooltip); /* Выводим текст */
+  position: absolute; /* Абсолютное позиционирование */
+  width: 50px; /* Ширина подсказки */
+  left: 10px; bottom: 0;
+  transform: translate(50%, 75%); /* Положение подсказки */
+  //background: #1a1a1a; /* Синий цвет фона */
+  color: #fff; /* Цвет текста */
+  padding: 0.5em; /* Поля вокруг текста */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
+  pointer-events: none; /* Подсказка */
+  opacity: 0; /* Подсказка невидима */
+  transition: .5s; /* Время появления подсказки */
+}
+[data-tooltip]:hover::after {
+  opacity: 1; /* Показываем подсказку */
+  left: 10px; /* Положение подсказки */
+}

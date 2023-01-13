@@ -5,12 +5,9 @@ import { Checkbox } from '../../lib/Checkbox'
 import { Button } from '../../lib/Button'
 import { Scoreboard } from '../../lib/Scoreboard'
 import moment from 'moment/moment'
-import { doc, setDoc, updateDoc, getDoc } from 'firebase/firestore'
+import { arrayUnion, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import { db } from '../../firebase/firebaseConfig'
 import { useSelector } from 'react-redux'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 
 const INITIAL_VALUE = '- - : - -'
 export const HomeMain = () => {
@@ -18,70 +15,101 @@ export const HomeMain = () => {
 
   const [startTime, setStartTime] = useState(INITIAL_VALUE)
   const [endTime, setEndTime] = useState(INITIAL_VALUE)
+  const [dinnerTime, setDinnerTime] = useState('')
+  const [valueDinner, setValueDinner] = useState('')
 
+  const [openScoreboard, setOpenScoreboard] = useState(false)
+  const [addDinnerMinutes, setAddDinnerMinutes] = useState(false)
+  const [DinnerMinutesDone, setDinnerMinutesDone] = useState(false)
+  const [workInDinner, setWorkInDinner] = useState(true)
+  const [pauseHours, setPauseHours] = useState(true)
+
+  const currentTime = moment().format('HH:mm')
+  const sendArrayPause = () => {
+    const end = moment(endTime, 'HH:mm')
+    const pause = moment(currentTime, 'HH:mm')
+    return pause.diff(end, 'minutes')
+  }
   const sendStartWork = async () => {
-    const currentTime = moment().format('HH:mm')
     await setDoc(doc(db, 'users', user.email, 'time', moment().format('YYYY-MM-DD')), {
       start: currentTime,
       end: INITIAL_VALUE,
-      day: moment().format('YYYY-MM-DD')
+      day: moment().format('YYYY-MM-DD'),
+      fromHome: false,
+      dinnerTime: null,
+      pauseHours: [],
+      pauseHoursToggle: false
     })
     setStartTime(currentTime)
   }
   const sendEndWork = async () => {
     const currentTime = moment().format('HH:mm')
     await updateDoc(doc(db, 'users', user.email, 'time', moment().format('YYYY-MM-DD')), {
-      end: currentTime
+      end: currentTime,
+      pauseHoursToggle: false
     })
     setEndTime(currentTime)
+    setPauseHours(false)
+  }
+  const sendWorkFromHome = async () => {
+    await updateDoc(doc(db, 'users', user.email, 'time', moment().format('YYYY-MM-DD')), {
+      fromHome: true
+    })
+  }
+  const sendPauseHours = async () => {
+    await updateDoc(doc(db, 'users', user.email, 'time', moment().format('YYYY-MM-DD')), {
+      pauseHours: arrayUnion(sendArrayPause()),
+      pauseHoursToggle: true,
+      end: INITIAL_VALUE
+    })
+    setPauseHours(true)
+    setEndTime(INITIAL_VALUE)
   }
   const getWorkTime = async () => {
     if (user.email) {
       const docRef = doc(db, 'users', user.email, 'time', moment().format('YYYY-MM-DD'))
       const docSnap = await getDoc(docRef)
       if (docSnap.exists()) {
-        const { start, end } = docSnap.data()
+        const { start, end, dinnerTime, pauseHoursToggle } = docSnap.data()
         setStartTime(start)
         setEndTime(end)
+        setDinnerTime(dinnerTime)
+        setPauseHours(pauseHoursToggle)
+        if (dinnerTime !== null) {
+          setOpenScoreboard(false)
+          setAddDinnerMinutes(false)
+          setDinnerMinutesDone(true)
+          setWorkInDinner(false)
+        }
       }
     }
   }
-  useEffect(() => {
-    getWorkTime()
-  }, [user.email])
-  const PlusMinutesSchema = yup.object().shape({
-    minutes: yup
-      .number()
-      .max(60, 'Не больше 60 минут')
-      .typeError('Введите количество минут')
-  })
-  const { formState: { isValid } } = useForm({
-    mode: 'onChange',
-    resolver: yupResolver(PlusMinutesSchema)
-  })
-
-  const [openScoreboard, setOpenScoreboard] = useState(false)
-  const [changeButton, setChangeButton] = useState(false)
-  const [addScoreboard, setAddScoreboard] = useState(false)
-  const [doneScoreboard, setDoneScoreboard] = useState(true)
-
   const openSc = () => {
     setOpenScoreboard(true)
-    setChangeButton(true)
-    setAddScoreboard(false)
-    setDoneScoreboard(false)
+    setAddDinnerMinutes(true)
+    setDinnerMinutesDone(false)
+    setWorkInDinner(false)
   }
-
-  const [dinnerTime, setDinnerTime] = useState('')
-  const addMin = async () => {
+  const setNumber = ({ target }) => {
+    let { value, min, max } = target
+    value = Math.max(Number(min), Math.min(Number(max), Number(value)))
+    setValueDinner(value)
+    setDinnerTime(value)
+  }
+  const onChange = ({ target: { value } }) => setValueDinner(prev => /\d+/.test(Number(value)) ? value : prev)
+  const sendDinnerMinutes = async () => {
     await updateDoc(doc(db, 'users', user.email, 'time', moment().format('YYYY-MM-DD')), {
-      dinnerTime: `00:${dinnerTime}`
+      dinnerTime: (`00:${dinnerTime}` === '00:60') ? '01:00' : (sendDinnerMinutes.length < 5) ? `00:0${dinnerTime}` : `00:${dinnerTime}`
     })
     setOpenScoreboard(true)
-    setChangeButton(false)
-    setAddScoreboard(true)
-    setDoneScoreboard(false)
+    setAddDinnerMinutes(false)
+    setDinnerMinutesDone(true)
+    setWorkInDinner(false)
   }
+  useEffect(() => {
+    getWorkTime()
+    setPauseHours()
+  }, [user.email])
   return (
     <div className={styles.homeMain}>
       <Title
@@ -97,17 +125,34 @@ export const HomeMain = () => {
           text={endTime}
           style="green"
         />
-        {openScoreboard
-          ? <input
-            className={styles.scoreboard}
-              name='minutes'
-              value={dinnerTime}
-              onChange={(e) => setDinnerTime(e.target.value)}
-              type='text'
-              placeholder='00'
+        <div className={styles.scoreboardWhite}>
+          {(dinnerTime !== null)
+            ? <Scoreboard
+              text={dinnerTime}
+              style="white"
             />
-          : null
-        }
+            : null}
+          {openScoreboard
+            ? <div className={styles.addMinutesBlock}>
+              {addDinnerMinutes
+                ? <span className={styles.addMinutesSpan}>Введи количество отработанных минут</span>
+                : null
+              }
+              <input
+                {...{ valueDinner, onChange }}
+                className={styles.scoreboard}
+                name='minutes'
+                value={valueDinner}
+                onChange={setNumber}
+                type='number'
+                placeholder='00'
+                max='60'
+              />
+            </div>
+
+            : null
+          }
+        </div>
       </div>
       <div className={styles.buttonsHome}>
         <Button
@@ -117,13 +162,13 @@ export const HomeMain = () => {
           onClick={sendStartWork}
           disabled={startTime !== INITIAL_VALUE}
         />
-        <Button
+         <Button
           style="button__white"
           text="УШЕЛ ДОДОМУ"
           onClick={sendEndWork}
-          disabled={endTime !== INITIAL_VALUE}
+          disabled={(endTime !== INITIAL_VALUE) && pauseHours === false}
         />
-        {doneScoreboard
+        {workInDinner
           ? < Button
             style="button__dark"
             text="РАБОТАЮ В ОБЕД"
@@ -131,16 +176,16 @@ export const HomeMain = () => {
           />
           : null
         }
-        {changeButton
+        {addDinnerMinutes
           ? <Button
             style="button__dark"
             text="ДОБАВИТЬ"
-            onClick={addMin}
-            disabled={!isValid}
+            onClick={sendDinnerMinutes}
+            // disabled={!isValid}
           />
           : null
         }
-        {addScoreboard
+        {DinnerMinutesDone
           ? <Button
             style="button__dark"
             text="ВРЕМЯ ДОБАВЛЕНО"
@@ -151,13 +196,15 @@ export const HomeMain = () => {
         <Button
           style="button__dark"
           text="ПРОДОЛЖИТЬ РАБОТУ"
+          onClick={sendPauseHours}
+          disabled={pauseHours}
         />
       </div>
         <Checkbox
           style="fake__ball"
           name="remember"
           type="checkbox"
-          // onClick={toggleType}
+          onClick={sendWorkFromHome}
           text="Работаю из дома"
         />
     </div>

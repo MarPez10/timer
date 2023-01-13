@@ -1,6 +1,5 @@
 .homeMain{
   font-size: 100px;
-
   > h1 {
     margin-top: 68px;
     font-size: 53px;
@@ -12,15 +11,17 @@
   margin-top: 34px;
   gap: 34px ;
 }
-
 .homeScoreboard{
   padding-top: 23px;
   display: flex;
   gap: 34px;
 }
+.scoreboardWhite{
+  position: relative;
+}
 .scoreboard{
   background: linear-gradient(180deg, rgba(0, 207, 44, 0) 98.5%, #555555 1%);
-  position: relative;
+  position: absolute;
   font-family: 'Arial', sans-serif;
   font-style: italic;
   font-weight: 900;
@@ -36,4 +37,20 @@
     opacity: 0;
     transition: opacity 0.3s ease;
   }
+}
+.addMinutesBlock{
+  width: 290px;
+  position: relative;
+}
+.addMinutesSpan{
+  position: absolute;
+  font-size: 11px;
+  white-space: nowrap;
+  text-align: center;
+  align-self: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #A1A1A1;
 }

@@ -5,10 +5,12 @@ import { logOutUser } from '../../redux/reducers/user'
 import { useDispatch, useSelector } from 'react-redux'
 import { DropDown } from '../../lib/DropDown'
 import { Button } from '../../lib/Button'
+import { EditForm } from '../Forms/EditForm'
 
 export const HeaderHome = () => {
   const user = useSelector((s) => s.user)
   const [dropActive, setDropActive] = useState(false)
+  const [modalActive, setModalActive] = useState(false)
   const dropRef = useRef()
   useEffect(() => {
     const handler = (e) => {
@@ -38,7 +40,8 @@ export const HeaderHome = () => {
               active={dropActive}
               setActive={setDropActive}
               text='Редактировать'
-              to={'/home/edit'}
+              onClick={() => setModalActive(true)}
+              // to={'/home/edit'}
             />
             <DropDown
               active={dropActive}
@@ -67,6 +70,7 @@ export const HeaderHome = () => {
           </svg>
         </Link>
       </div>
+      <EditForm active={modalActive} setActive={setModalActive}/>
     </div>
   )
 }
