@@ -26,11 +26,11 @@ export const Table = () => {
     const hours = Math.trunc(mins / 60)
     const getHours = () => {
       Math.trunc(mins / 60)
-      return (hours.length !== 1) ? '0' + hours : hours
+      return (hours < 10) ? '0' + hours : hours
     }
     const minutes = mins % 60
     const getMinutes = () => {
-      return (minutes.length !== 1) ? '0' + minutes : minutes
+      return (minutes < 10) ? '0' + minutes : minutes
     }
     return getHours() + ':' + getMinutes()
   }
