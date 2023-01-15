@@ -79,10 +79,10 @@ export const Table = () => {
                 {`${day.end}`}
               </div>
               <div className={(getTimeIntervalStartEnd(day.start, day.end, day.dinnerTime, day.pauseHours) > time0900)
-                ? `${styles.rowGreen}`
+                ? `${styles.cellGreen}`
                 : (getTimeIntervalStartEnd(day.start, day.end, day.dinnerTime, day.pauseHours) < time0900)
-                    ? `${styles.rowRed}`
-                    : `${styles.row}`}
+                    ? `${styles.cellRed}`
+                    : `${styles.cell}`}
                   key={`${day.start}`}>
                 {day.end !== INITIAL_VALUE
                   ? getTimeIntervalStartEnd(day.start, day.end, day.dinnerTime, day.pauseHours)
@@ -121,10 +121,10 @@ export const Table = () => {
                 </div>
               </div>
               <div className={(getTimeIntervalStartEnd(day.start, day.end, day.dinnerTime, day.pauseHours) > time0900)
-                ? `${styles.rowGreenResult}`
+                ? `${styles.cellGreenResult}`
                 : (getTimeIntervalStartEnd(day.start, day.end, day.dinnerTime, day.pauseHours) < time0900)
-                    ? `${styles.rowRedResult}`
-                    : `${styles.rowResult}`} key={`${day.dinnerTime}`}>
+                    ? `${styles.cellRedResult}`
+                    : `${styles.cellResult}`} key={`${day.dinnerTime}`}>
                 {getDifferenceTime(getTimeIntervalStartEnd(day.start, day.end, day.dinnerTime, day.pauseHours))}
               </div>
             </li>))}

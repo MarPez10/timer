@@ -12,7 +12,7 @@
   background-color: #0B0C0C;
   width: 100%;
 }
-.row,.rowResult,.rowRed,.rowRedResult,.rowGreen,.rowGreenResult{
+.row,.cellResult,.cellRed,.cellRedResult,.cellGreen,.cellGreenResult{
   display: flex;
   color: white;
   position: relative;
@@ -29,31 +29,31 @@
   grid-template-columns: 21% 21% 21% 21% 16%;
   align-items: center;
 }
-.rowRed,.rowRedResult{
+.cellRed,.cellRedResult{
   color: #FF1822;
 }
-.rowResult{
+.cellResult{
   &:before{
     content: 'P–P–P–PERFECT:';
 
   }
 }
-.rowRedResult{
+.cellRedResult{
   justify-self: end;
   &:before{
     content: 'НЕДОРАБОТКА:';
   }
 }
-.rowGreen,.rowGreenResult{
+.cellGreen,.cellGreenResult{
   color: #00CF2C;
 }
-.rowGreenResult{
+.cellGreenResult{
   justify-self: end;
   &:before{
     content: 'ПЕРЕРАБОТКА:';
   }
 }
-.rowResult,.rowRedResult,.rowGreenResult{
+.cellResult,.cellRedResult,.cellGreenResult{
   &:before{
     padding-right: 10px;
   }
