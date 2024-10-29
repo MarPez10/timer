@@ -5,13 +5,11 @@ import { LoginForm } from '../../components/Forms/LoginForm'
 import { RegistrationForm } from '../../components/Forms/RegistrationForm'
 import { ForgotPassForm } from '../../components/Forms/ForgotPassForm'
 import { HeaderAuth } from '../../components/HeaderAuth'
-// import { EditForm } from '../../components/Forms/EditForm'
 
 export const Auth = () => {
   return (
     <div className={styles.auth}>
       <HeaderAuth/>
-      {/* <EditForm /> */}
       <Routes>
         <Route path="/auth/login" element={<LoginForm />} />
         <Route path="/auth/registration" element={<RegistrationForm />} />
